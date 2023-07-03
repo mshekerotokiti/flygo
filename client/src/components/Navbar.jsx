@@ -1,7 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({onLogout}) => {
+  function handleLogout (){
+    fetch("/logout", {
+      method: "DELETE",
+    }).then(()=> onLogout());
+  }
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -47,6 +53,9 @@ const Navbar = () => {
                   Login
                 </NavLink>
               </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+                </li>
             </ul>
           </div>
         </div>
